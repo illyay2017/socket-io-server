@@ -5,6 +5,7 @@ const axios = require("axios");
 
 const port = process.env.PORT || 4001;
 const index = require("./routes/index");
+const config = require("./config/config.js");
 
 const app = express();
 app.use(index);
@@ -24,7 +25,7 @@ const getApiAndEmit = async socket => { // need to learn what this is doing, i t
   try {
     const res = await axios.get(
     	// ****** NEED TO REFACTOR API KEY TO A .GITIGNORED CONFIG FILE! ******
-      "https://api.darksky.net/forecast/_API_KEY_GOES_HERE_/43.7695,11.2558"
+      `https://api.darksky.net/forecast/${config.darkSkyKey}/43.7695,11.2558`
     );
     socket.emit("FromAPI", res.data.currently.temperature);
   } catch (error) {
