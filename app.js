@@ -18,6 +18,7 @@ io.on("connection", socket => {
     () => getApiAndEmit(socket),
     10000
   );
+  // console.log(config.darkSkyKey);
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
